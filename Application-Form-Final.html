@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="Af-trial.css"/>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<body>
+
+<form id="regForm" action="/action_page.php">
+  <h1>Application Form</h1>
+
+  <div class="tab">
+    <div class="title">Personal Information</div>
+    <div class="input-container">
+        First Name:
+    <input type="text" name="firstName" id="first_name" oninput="this.className = ''"/>
+    <h1 id="first_name_error"></h1>
+    </div>
+    <div class="input-container">
+        Last Name:
+    <input type="text" name="lastName" id="last_name" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Age:
+    <input type="number" name="age" maxlength="2"  id="age" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Gender:
+            <select name="gender" class="select1" >
+
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>                               
+                  </select>
+    </div> 
+    <div class="input-container">
+        Mobile Number:
+    <input type="text" name="mobileNumber" maxlength="10" minlength="10" id="mobile" oninput="this.className = ''" />
+    </div> 
+    <div class="input-container">
+        Email:
+    <input type="email" name="email" id="email" oninput="this.className = ''" required="email"/>
+    </div> 
+    <div class="input-container">
+        Building/Flat no.
+    <input type="text" name="address" id="address" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        City:
+    <input type="text" name="city" id="city" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        State:
+    <input type="text" name="state" id="state" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        Pincode:
+    <input type="text" name="pincode" maxlength="6" id="pincode" oninput="this.className = ''"/>
+    </div>
+    <div class="title" >
+        Employment details :
+    
+    </div>
+    <div class="input-container">
+        Type of employment :
+            <select name="typeOfEmployemnet" class="select1" >
+
+                    <option value="salaried">Salaried</option>
+                    <option value="selfEmployed">Self-Employed</option>
+                                                    
+                  </select>
+    </div> 
+    <div class="input-container">
+        Yearly salary:
+    <input type="number" name="salary" id="salary" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        Existing EMI:
+    <input type="number" name="existingEmi" id="existing-emi" oninput="this.className = ''" />
+    </div>
+    </div>
+
+    <div class="tab" style="padding:30px";>
+        <div class="title">Vehicle Details</div>
+        <div class="input-container">
+            Vehicle Make:
+        <input type="text" name="carMake" id="car-make" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Vehicle Model:
+        <input type="text" name="carModel" id="car-model" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Ex-ShowRoom Price:
+        <input type="number" name="ExShowroomPrice" id="Ex-showroom-price" oninput="this.className = ''"/>
+        </div>
+    </div>
+
+    <div class="tab" style="padding:30px";>
+        <div class="title">Loan Details</div>
+        <div class="input-container">
+            Loan Amount:
+        <input type="number" name="loanAmount" id="loan-amount" oninput="this.className = ''"/>
+        </div>
+        <div class="input-container">
+            Loan Tenure:
+        <input type="number" name="loanTenure" id="loan-tenure" oninput="this.className = ''"/>
+        </div>
+        <div class="input-container">
+            Rate Of Interest:
+        <input type="number" name="rateOfInterest" id="ROi" oninput="this.className = ''"/>
+        </div>
+        
+    </div>
+    <div class="tab"  style="padding:30px";>
+        <div class="title">Upload Documents</div>
+        <div class="input-container">
+            Aadhar Card:
+        <input type="file" name="aadharCard" id="aadhar-card" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Pan Card:
+        <input type="file" name="panCard" id="pan-card" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Salary Slip:
+        <input type="file" name="salarySlip" id="salary-slip" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Bank Details:
+        <input type="file" name="photo" id="photo" oninput="this.className = ''" />
+        </div>
+        <div  class="text-center">
+        <button type ="submit">Submit</button>          
+        </div>
+    </div>
+  
+
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+<script>
+var currentTab = 0; 
+showTab(currentTab); 
+
+function showTab(n) {
+
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+ 
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  r:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  
+  var x = document.getElementsByClassName("tab");
+
+  if (n == 1 && !validateForm()) return false;
+  
+  x[currentTab].style.display = "none";
+ 
+  currentTab = currentTab + n;
+  
+  if (currentTab >= x.length) {
+
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  
+  showTab(currentTab);
+}
+
+function validateForm() {
+
+  var x, y, i, valid = true;
+  var letters = /^[A-Za-z]+$/;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  
+  for (i = 0; i < y.length; i++) {
+
+    if (y[i].value == "" || y[i].value == letters) {
+   
+      y[i].className += " invalid";
+
+      valid = false;
+
+          }
+
+     }
+
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; 
+}
+
+
+function fixStepIndicator(n) {
+
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+
+  x[n].className += " active";
+}
+</script>
+
+<script>
+
+
+$(document).ready(function () {    
+  var phoneRegex = /\D+/g;
+  var nameRegex = /[.;,?%0-9\d@!#$%^&*()_+=~`>?>:'"[\]|]/;
+
+    $('#first_name').keyup(function() {
+
+        var $th = $(this);
+
+        $th.val( $th.val().replace(nameRegex, function(){ return ''; }) );
+
+    });
+ $('#last_name').keyup(function() {
+
+        var $th = $(this);
+
+        $th.val( $th.val().replace(nameRegex, function(){ return ''; }) );
+    });
+
+    $('#city').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(nameRegex, function(){ return ''; }) );
+});
+
+$('#state').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(nameRegex, function(){ return ''; }) );
+});
+ $('#mobile').keyup(function() {
+
+        var $th = $(this);
+
+        $th.val( $th.val().replace(phoneRegex, function(){ return ''; }) );
+    });
+
+  $('#loan-amount').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(phoneRegex, function(){ return ''; }) );
+});
+$('#loan-tenure').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(phoneRegex, function(){ return ''; }) );
+});
+$('#ROi').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(phoneRegex, function(){ return ''; }) );
+});
+$('#Ex-showroom-price').keyup(function() {
+
+var $th = $(this);
+
+$th.val( $th.val().replace(phoneRegex, function(){ return ''; }) );
+});
+
+
+
+});
+
+
+</script>
+
+
+</body>
+</html>
