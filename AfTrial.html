@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="Af-trial.css"/>
+<body>
+
+<form id="regForm" action="/action_page.php">
+  <h1>Register:</h1>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">
+    <div class="title">Personal Information</div>
+    <div class="input-container">
+        First Name:
+    <input type="text" name="firstName" id="first_name" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Last Name:
+    <input type="text" name="lastName" id="last_name" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Age:
+    <input type="number" name="age" id="age" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Gender:
+    <input type="text" name="gender" id="gender" oninput="this.className = ''"/>
+    </div>
+    <div class="input-container">
+        Mobile Number:
+    <input type="tel" name="mobileNumber" id="mobile" oninput="this.className = ''" />
+    </div> 
+    <div class="input-container">
+        Email:
+    <input type="email" name="email" id="email" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        Building/Flat no.
+    <input type="text" name="address" id="address" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        City:
+    <input type="text" name="city" id="city" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        State:
+    <input type="text" name="state" id="state" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        Pincode:
+    <input type="number" name="pincode" id="pincode" oninput="this.className = ''"/>
+    </div>
+    <div class="title" >
+        Employment details :
+    
+    </div>
+    <div class="input-container">
+        Type of employment :
+            <select name="typeOfEmployemnet" class="select1" >
+
+                    <option value="salaried">Salaried</option>
+                    <option value="selfEmployed">Self-Employed</option>
+                                                    
+                  </select>
+    </div> 
+    <div class="input-container">
+        Yearly salary:
+    <input type="number" name="salary" id="salary" oninput="this.className = ''"/>
+    </div> 
+    <div class="input-container">
+        Existing EMI:
+    <input type="number" name="existingEmi" id="existing-emi" oninput="this.className = ''" />
+    </div>
+    </div>
+
+    <div class="tab" style="padding:30px";>
+        <div class="title">Vehicle Details</div>
+        <div class="input-container">
+            Car Make:
+        <input type="text" name="carMake" id="car-make" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Car Model:
+        <input type="text" name="carModel" id="car-model" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Ex-ShowRoom Price:
+        <input type="number" name="ExShowroomPrice" id="Ex-showroom-price" oninput="this.className = ''"/>
+        </div>
+    </div>
+
+    <div class="tab" style="padding:30px";>
+        <!--form method="POST" id="loan-form" class="loan-form" action="application-form.lti" enctype="multipart/form-data"-->
+        <div class="title">Loan Details</div>
+        <div class="input-container">
+            Loan Amount:
+        <input type="number" name="loanAmount" id="loan-amount" oninput="this.className = ''"/>
+        </div>
+        <div class="input-container">
+            Loan Tenure:
+        <input type="number" name="loanTenure" id="loan-tenure" oninput="this.className = ''"/>
+        </div>
+        <div class="input-container">
+            Rate Of Interest:
+        <input type="number" name="rateOfInterest" id="ROi" oninput="this.className = ''"/>
+        </div>
+        
+    </div>
+    <div class="tab"  style="padding:30px";>
+        <div class="title">Upload Documents</div>
+        <div class="input-container">
+            Aadhar Card:
+        <input type="file" name="aadharCard" id="aadhar-card" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Pan Card:
+        <input type="file" name="panCard" id="pan-card" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Salary Slip:
+        <input type="file" name="salarySlip" id="salary-slip" oninput="this.className = ''" />
+        </div>
+        <div class="input-container">
+            Bank Details:
+        <input type="file" name="photo" id="photo" oninput="this.className = ''" />
+        </div>
+        <div  class="text-center">
+        <button type ="submit">Submit</button>          
+        </div>
+    </div>
+  
+
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+</body>
+</html>
